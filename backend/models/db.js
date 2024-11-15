@@ -72,7 +72,7 @@ const CommentsSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('users', UserSchema);
 const Post = mongoose.model('Post', PostSchema);
 const Comments = mongoose.model('Comments', CommentsSchema);
 

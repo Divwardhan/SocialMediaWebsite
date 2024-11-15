@@ -11,6 +11,7 @@ const LeftBar = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        overflowX:'hidden',
         width: {
           xs: 70,
           sm: 70,
@@ -27,7 +28,7 @@ const LeftBar = () => {
           borderTop: '1px solid gray',
           position:'fixed',
           bottom:0,
-          width:'100%',
+          width:'50%',
           height:70,
         }
       }}>

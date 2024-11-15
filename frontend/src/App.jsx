@@ -1,87 +1,82 @@
-import Grid from '@mui/material/Grid2';
-import { Container, CssBaseline } from '@mui/material';
-import LeftBar from './Components/LeftBar';
-import { useCustomTheme } from './hooks/useCustomTheme';
+import * as React from 'react';
+import { Box } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
+import { useCustomTheme } from './hooks/useCustomTheme';
+import LeftBar from './Components/LeftBar';
 import Topbar from './Components/Topbar';
 import Posts from './Components/Posts';
 import Rightbar from './Components/Rightbar';
 
 export default function App() {
   const theme = useCustomTheme();
+
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Grid
-        container
-        width={'100%'}
-        spacing={0} >
-        <Grid
-          container
+      <Box
+        sx={{
+          display: 'flex',
+          minHeight: '100vh',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+          overflowX:'hidden'
+        }}
+      >
+        {/* Left Sidebar - Fixed Width */}
+        <Box
           sx={{
-            width: {
-              xs: '7%',
-              sm: '7%',
-              md: '7%',
-              lg: '16%'
-            },
-            height:'100dvh',
-            position:'fixed',
-            zIndex:10
-          }}>
+            width: '240px',
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            bottom: 0,
+            borderRight: 1,
+            borderColor: 'divider',
+            bgcolor: 'background.paper',
+            overflowY: 'auto',
+            overflowX:'hidden'
+          }}
+        >
           <LeftBar />
-        </Grid>
-        <Grid
+        </Box>
+
+        <Box
           sx={{
-            position:'absolute',
-            left: {
-              xs: '0%',
-              sm: '0%',
-              md: '7%',
-              lg: '16%'
-            },
-            width: {
-              xs: '100%',
-              sm: '100%',
-              md: '93%',
-              lg: '84%'
-            },
-          }}  >
-          <Container sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}>
-            <Container sx={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 5,
-              mt: 3,
-              mx:{
-                md:0,
-              }
-            }}>
-              <Topbar />
-              <Posts />
-              <Posts />
-              <Posts />
-            </Container>
-            <Container sx={{
-              width: '20%',
-              display: {
-                xs: 'none',
-                sm: 'none',
-                md: 'none',
-                lg: 'block',
-              }
-            }}>
-              <Rightbar />
-            </Container>
-          </Container>
-        </Grid>
-      </Grid>
+            flex: 1,
+            ml: '240px', // Width of left sidebar
+            mr: '320px', // Width of right sidebar
+            maxWidth: '680px',
+            mx: 'auto',
+            py: 2,
+            px: 3,
+            overflowY: 'auto',
+          }}
+        >
+          <Topbar />
+          <Box sx={{ mt: 2 }}>
+            <Posts />
+            <Posts />
+            <Posts />
+          </Box>
+        </Box>
+
+        {/* Right Sidebar - Fixed Width */}
+        <Box
+          sx={{
+            width: '320px',
+            position: 'fixed',
+            right: 0,
+            top: 0,
+            bottom: 0,
+            borderLeft: 1,
+            borderColor: 'divider',
+            bgcolor: 'background.paper',
+            overflowY: 'auto',
+            p: 2,
+          }}
+        >
+          <Rightbar />
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }
